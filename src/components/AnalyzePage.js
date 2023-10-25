@@ -1,6 +1,36 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class AnalyzePage extends Component {
+  state = {
+    selectedFile: null,
+    analysisResult: null,
+  };
+
+  onFileChange = (event) => {
+    this.setState({ selectedFile: event.target.files[0] });
+  };
+
+  onFormSubmit = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("image", this.state.selectedFile);
+
+    axios
+      .post("http://localhost:3000/analyze", formData)
+      .then((response) => {
+        console.log(response.data);
+        this.setState({ analysisResult: response.data.results });
+        // Redirect to AnalysisPage with the analysis results
+        this.props.history.push("/Analysis", {
+          analysisResult: this.state.analysisResult,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   render() {
     return (
       <div>
@@ -383,6 +413,10 @@ class AnalyzePage extends Component {
             </div>
           </div>
         }
+        <form onSubmit={this.onFormSubmit}>
+          <input type="file" onChange={this.onFileChange} />
+          <button type="submit">Analyze</button>
+        </form>
       </div>
     );
   }
