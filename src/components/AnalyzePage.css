@@ -1,3 +1,15 @@
+@media (max-width: 768px) {
+  .how-it-works,
+  .dropzone {
+    width: 90%;
+  }
+
+  .dropzone img {
+    width: 100%;
+    margin: 10px auto; /* This will continue to center the image on smaller screens */
+  }
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -7,7 +19,7 @@
 
 .how-it-works {
   width: 60%;
-  margin-bottom: 20px;
+  margin-bottom: -5px;
   text-align: center;
   font-size: 20px;
 }
@@ -31,9 +43,19 @@
   margin-bottom: 20px;
 }
 
+.dropzone img {
+  width: 500px;
+  height: auto;
+  max-width: 100%;
+}
+
 .dropzone.no-border {
-  border: none !important; /* The !important flag ensures the style is applied */
-  background: none; /* Optional: remove any background if set earlier */
+  border: none !important;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .analyze-btn {

@@ -86,7 +86,7 @@ const AnalyzePage = () => {
           <img
             src={files[0].preview}
             alt={files[0].name}
-            style={{ width: "500px", height: "auto" }} // adjust the size as per your requirement
+            //style={{ width: "500px", height: "auto" }} // adjust the size as per your requirement
           />
         )}
       </div>
