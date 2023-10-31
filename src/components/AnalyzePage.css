@@ -24,6 +24,12 @@
   font-size: 20px;
 }
 
+.disclaimer {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
 .no-numbers {
   list-style-type: none;
   padding-left: 0;
