@@ -1,12 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDropzone } from "react-dropzone";
 import "./AnalyzePage.css";
 
 const AnalyzePage = () => {
+  console.log("Component rendering"); // This will log every time the component renders
+
   const [files, setFiles] = useState([]);
   const [result, setResult] = useState(null);
 
+  useEffect(() => {
+    console.log("Result object:", result); // Log the result state to see if it is updated correctly
+
+    if (result) {
+      console.log("Preds object:", result.preds); // Log the preds object
+
+      if (typeof result.preds === "object") {
+        Object.entries(result.preds).forEach(([condition, value]) => {
+          console.log(`${condition}: ${value}`); // Log each condition separately
+        });
+      } else {
+        console.log("Preds is not an object");
+      }
+    }
+  }, [result]);
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
@@ -25,17 +42,14 @@ const AnalyzePage = () => {
     formData.append("image", files[0]);
 
     axios
-      .post("http://localhost:3000/analyze", formData)
+      .post(
+        "https://gentle-springs-57358-d1f77df02123.herokuapp.com/analyze",
+        formData
+      )
       .then((response) => {
-        const analysisId = response.data.analysisId;
-        axios
-          .get(`http://localhost:3000/analysis/${analysisId}`)
-          .then((resultResponse) => {
-            setResult(resultResponse.data); // This assumes the returned data is your desired result.
-          })
-          .catch((error) => {
-            console.error("Error fetching the analysis results:", error);
-          });
+        const parsedData = JSON.parse(response.data); // Parse the response text as JSON
+        setResult(parsedData.preds); // Handle analysis results directly
+        console.log("Result set:", parsedData.preds); // Check if the result is being set correctly
       })
       .catch((error) => {
         console.error("Error during image upload:", error);
@@ -83,11 +97,14 @@ const AnalyzePage = () => {
       )}
 
       {/* Display the result */}
-      {result && result.preds && (
+
+      {result && (
         <div className="analysis-section">
           <h3 className="results-label">Analysis Results</h3>
           <div className="results-container">
-            {Object.entries(result.preds)
+            {console.log("Rendering result:", result)}{" "}
+            {/* Check if the result is being passed correctly*/}
+            {Object.entries(result)
               .sort(([, valueA], [, valueB]) => valueB - valueA) // Sort in descending order
               .map(([key, value]) => (
                 <div className="result-item" key={key}>
