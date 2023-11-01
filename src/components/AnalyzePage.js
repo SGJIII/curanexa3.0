@@ -63,11 +63,9 @@ const AnalyzePage = () => {
       <div className="how-it-works">
         <h2>How it works</h2>
         <ol className="no-numbers">
+          <li>Take a picture or obtain a digital copy of a chest x-ray.</li>
           <li>
-            Take a picture or obtain a digital copy of a chest x-ray.
-          </li>
-          <li>
-            Upload the image by dragging and dropping or searching for a file.
+            Upload the image by dragging and dropping or searching for the file.
           </li>
           <li>Click Analyze to see your results.</li>
           <li className="disclaimer">
