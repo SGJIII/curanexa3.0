@@ -6,6 +6,8 @@ import "./AnalyzePage.css";
 const AnalyzePage = () => {
   console.log("Component rendering"); // This will log every time the component renders
 
+  const [loading, setLoading] = useState(false);
+
   const [files, setFiles] = useState([]);
   const [result, setResult] = useState(null);
 
@@ -40,6 +42,7 @@ const AnalyzePage = () => {
   const handleSubmit = () => {
     const formData = new FormData();
     formData.append("image", files[0]);
+    setLoading(true); // Set loading to true when the request starts
 
     axios
       .post(
@@ -50,9 +53,11 @@ const AnalyzePage = () => {
         const parsedData = JSON.parse(response.data); // Parse the response text as JSON
         setResult(parsedData.preds); // Handle analysis results directly
         console.log("Result set:", parsedData.preds); // Check if the result is being set correctly
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error during image upload:", error);
+        setLoading(false);
       });
   };
 
@@ -93,10 +98,16 @@ const AnalyzePage = () => {
           />
         )}
       </div>
-      {!result && (
+      {!result && !loading && (
         <button className="analyze-btn" onClick={handleSubmit}>
           Analyze
         </button>
+      )}
+
+      {loading && ( // Render the loading spinner when loading is true
+        <div className="loading-container">
+          <img src="/spinner.gif" alt="Loading..." />
+        </div>
       )}
 
       {/* Display the result */}

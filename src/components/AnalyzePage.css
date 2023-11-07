@@ -80,6 +80,17 @@
   background-color: #08797a; /* Slightly darker shade for the hover effect */
 }
 
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Adjust based on your needs */
+}
+
+.loading-container img {
+  width: 50px; /* Adjust based on your needs */
+}
+
 .analysis-section {
   padding-left: 15%;
   padding-right: 15%;
