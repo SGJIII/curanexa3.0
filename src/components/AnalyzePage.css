@@ -8,6 +8,36 @@
     width: 100%;
     margin: 10px auto; /* This will continue to center the image on smaller screens */
   }
+
+  .analysis-section {
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: -70px;
+  }
+
+  .results-section {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 70px;
+  }
+
+  .full-width {
+    width: 100%;
+    /* If you want to remove the padding on mobile as well to ensure it really takes the full width */
+    padding-left: 0;
+    padding-right: 0;
+    align-self: stretch;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr !important; /* Forces a single column layout */
+    gap: 20px; /* Adjust the gap as needed */
+  }
+
+  .result-item {
+    flex-basis: 100% !important; /* Forces each item to take full width */
+    margin: 5px 0; /* Adjust margin as needed */
+  }
 }
 
 .container {
@@ -92,8 +122,13 @@
 }
 
 .analysis-section {
-  padding-left: 15%;
-  padding-right: 15%;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.full-width {
+  align-self: center; /* This will make the element take the full width of the container */
+  width: 70%; /* Ensures it takes the full width */
 }
 
 .results-label {
@@ -110,13 +145,35 @@
   gap: 20px;
 }
 
+.results-section {
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 100px;
+}
+
+.categorie-title {
+  font-size: 1.2em !important;
+  font-weight: bold;
+}
+
+.categorie-description {
+  font-size: 1.2em !important;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
+  row-gap: 20px;
+  column-gap: 30px;
+}
+
 .result-item {
   /*  background-color: #f5f5f5; */
   flex: 1 0 calc(45% - 10px);
   border-radius: 8px;
   padding: 0px;
   padding-bottom: 0px;
-  margin: 5px 10px;
+  margin: 5px 0px;
   text-align: left;
   box-sizing: border-box;
   display: flex;
@@ -126,7 +183,7 @@
 }
 
 .result-item p {
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: bold;
 }
 
