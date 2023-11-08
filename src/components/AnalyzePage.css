@@ -80,7 +80,7 @@
 }
 
 .dropzone img {
-  width: 500px;
+  width: 350px;
   height: auto;
   max-width: 100%;
 }
@@ -124,11 +124,12 @@
 .analysis-section {
   margin-left: 15%;
   margin-right: 15%;
+  margin-top: -50px;
 }
 
 .full-width {
   align-self: center; /* This will make the element take the full width of the container */
-  width: 70%; /* Ensures it takes the full width */
+  width: 60%; /* Ensures it takes the full width */
 }
 
 .results-label {
