@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDropzone } from "react-dropzone";
 import "./AnalyzePage.css";
-import sendEvent from "..analytics.js";
+import sendEvent from "../analytics.js";
 
 const AnalyzePage = () => {
   console.log("Component rendering"); // This will log every time the component renders
