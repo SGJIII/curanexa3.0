@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDropzone } from "react-dropzone";
 import "./AnalyzePage.css";
+import sendEvent from "..analytics.js";
 
 const AnalyzePage = () => {
   console.log("Component rendering"); // This will log every time the component renders
@@ -118,10 +119,17 @@ const AnalyzePage = () => {
         const parsedData = JSON.parse(response.data); // Parse the response text as JSON
         setResult(parsedData.preds); // Handle analysis results directly
         console.log("Result set:", parsedData.preds); // Check if the result is being set correctly
+        sendEvent("receive_results", "Analysis", "Received Results", "success"); // Track successful result event with Google Analytics
         setLoading(false);
       })
       .catch((error) => {
         console.error("Error during image upload:", error);
+        sendEvent(
+          "analysis_error",
+          "Analysis",
+          "Error during analysis",
+          "error"
+        ); // Track the error event with Google Analytics
         setLoading(false);
       });
   };
