@@ -3,11 +3,13 @@ import axios from "axios";
 import { useDropzone } from "react-dropzone";
 import "./AnalyzePage.css";
 import sendEvent from "../analytics.js";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const AnalyzePage = () => {
   console.log("Component rendering"); // This will log every time the component renders
 
   const [loading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const [files, setFiles] = useState([]);
   const [result, setResult] = useState(null);
@@ -124,6 +126,7 @@ const AnalyzePage = () => {
       })
       .catch((error) => {
         console.error("Error during image upload:", error);
+        setIsError(true); // Set error state to true
         sendEvent(
           "analysis_error",
           "Analysis",
@@ -171,9 +174,23 @@ const AnalyzePage = () => {
           />
         )}
       </div>
+      {isError && !loading && !result && (
+        <div className="error-message">
+          <i className="fa fa-exclamation-triangle" aria-hidden="true"></i>{" "}
+          {/* This is the FontAwesome icon class */}
+          Analysis timed out, please try again.
+        </div>
+      )}
       {!result && !loading && (
         <button className="analyze-btn" onClick={handleSubmit}>
-          Analyze
+          {isError ? (
+            <>
+              <i className="fas fa-sync"></i> {/* FontAwesome refresh icon */}
+              Regenerate Response
+            </>
+          ) : (
+            "Analyze"
+          )}
         </button>
       )}
       {loading && ( // Render the loading spinner when loading is true

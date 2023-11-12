@@ -106,6 +106,10 @@
   transition: background-color 0.3s ease; /* Smooth color transition for hover effect */
 }
 
+.analyze-btn i {
+  padding-right: 6px;
+}
+
 .analyze-btn:hover {
   background-color: #08797a; /* Slightly darker shade for the hover effect */
 }
@@ -119,6 +123,22 @@
 
 .loading-container img {
   width: 50px; /* Adjust based on your needs */
+}
+
+.error-message {
+  color: white; /* text color */
+  background-color: #e06c2b; /* background color */
+  padding: 10px 15px; /* top/bottom padding, left/right padding */
+  border-radius: 6px; /* rounded corners */
+  display: flex; /* enables flexbox layout */
+  align-items: center; /* centers items vertically */
+  gap: 10px; /* space between icon and text */
+  font-size: 16px; /* text size */
+  margin-bottom: 10px; /* space above the error message */
+}
+
+.error-message i {
+  font-size: 20px; /* icon size if using font icons */
 }
 
 .analysis-section {
